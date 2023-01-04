@@ -14,7 +14,7 @@
  */
 
 body{
-    
+    margin-bottom: 100px;
 }
 .form-control::-moz-placeholder{
    color: #DDDDDD;

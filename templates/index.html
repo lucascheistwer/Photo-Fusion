@@ -59,9 +59,12 @@
                 <div class="form-group">
                   <input type="text" name="text" class="form-control transparent" placeholder="Your input text here...">
                 </div>
-                <button type="submit" class="btn btn-danger btn-fill">Generate</button>
+                <button type="submit" class="btn btn-danger btn-fill" id="generate_txt2img_button">Generate</button>
               </form>
-
+              <br>
+              <div class="progress">
+                <div id="text2img_progressbar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -81,16 +84,47 @@
                   <br>
                   <input type="text" name="neutral" class="form-control transparent" placeholder="Neutral input here...">
                   <br>
+                  <br>
                   <input type="text" name="target" class="form-control transparent" placeholder="Target input here...">
                 </div>
-                <button type="submit" class="btn btn-danger btn-fill">Generate</button>
+                <button type="submit" class="btn btn-danger btn-fill" id="generate_img2img_button">Generate</button>
               </form>
+              <br>
+              <div class="progress">
+                <div id="img2img_progressbar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>          
+  </div> 
+  <script>
+    document.getElementById('generate_txt2img_button').addEventListener('click', function() {
+      var progressBar = document.getElementById('text2img_progressbar');
+      var interval = setInterval(function() {
+        var currentWidth = parseInt(progressBar.style.width);
+        if (currentWidth >= 100) {
+          clearInterval(interval);
+        } else {
+          progressBar.style.width = (currentWidth + 0.5) + '%';
+        }
+      }, 100);
+    });
+  </script> 
+  <script>
+    document.getElementById('generate_img2img_button').addEventListener('click', function() {
+      var progressBar = document.getElementById('img2img_progressbar');
+      var interval = setInterval(function() {
+        var currentWidth = parseInt(progressBar.style.width);
+        if (currentWidth >= 100) {
+          clearInterval(interval);
+        } else {
+          progressBar.style.width = (currentWidth + 5) + '%';
+        }
+      }, 100);
+    });
+  </script>         
 </body>
 <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}" type="text/javascript"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
